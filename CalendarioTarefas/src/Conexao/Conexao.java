@@ -24,7 +24,7 @@ public Connection getConexao() {
             String driverName = "com.mysql.jdbc.Driver";                          
             Class.forName(driverName);  
             // Configurando a nossa conexão com um banco de dados//  
-            String serverName = "72.13.93.206";    //caminho do servidor do BD  
+            String serverName = "s156.eatj.com:3307";    //caminho do servidor do BD  
             String mydatabase ="geovane1992";        //nome do banco de dados  
             String url = "jdbc:mysql://" + serverName + "/" + mydatabase;  
             String username = "geovane1992";        //nome de um usuário do BD        
