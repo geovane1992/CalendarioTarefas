@@ -5,6 +5,8 @@
  */
 package calendariotarefas;
 
+import Conexao.Conexao;
+
 /**
  *
  * @author GAOliveira
@@ -15,7 +17,9 @@ public class CalendarioTarefas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Conexao cn = new Conexao();
+        System.out.println(cn.getConexao());
+
     }
     
 }
