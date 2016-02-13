@@ -40,8 +40,7 @@ public class DaoDisciplina {
             Disciplina temp = new Disciplina();  
             // pega todos os atributos da Disciplina 
             temp.setCodDisciplina(rs.getInt("codDisciplina"));  
-            temp.setNome(rs.getString("nome"));  
-            temp.setMatricula(rs.getInt("matricula")); 
+            temp.setNome(rs.getString("nome"));   
             resultados.add(temp);  
 
          }  
@@ -60,11 +59,11 @@ public class DaoDisciplina {
       try {  
 
          con.comando.executeUpdate("UPDATE Disciplina SET nome = '"  
-            + disciplina.getNome()+ "' , matricula = '" + disciplina.getMatricula()
+            + disciplina.getNome()
             + "' WHERE  codDisciplina = '" + disciplina.getCodDisciplina()+"'"); 
          
       } catch (SQLException e) {  
-         JOptionPane.showMessageDialog(null, "Erro ao atualizar Disciplina!");  
+         System.out.println("Erro ao atualizar Disciplina!");  
       } finally {  
          con.fechar();  
       }  
@@ -75,7 +74,8 @@ public class DaoDisciplina {
        con.getConexao();   
       try {  
          con.comando.executeUpdate("INSERT INTO Disciplina VALUES('" + disciplina.getCodDisciplina()+ "','" 
-               + disciplina.getNome() + "','" + disciplina.getMatricula()
+               + disciplina.getNome() + "','"
+               + disciplina.getMatricula() 
                + "')");  
       } catch (SQLException e) {  
          imprimeErro("Erro ao inserir Disciplina", e.getMessage());  
@@ -85,7 +85,7 @@ public class DaoDisciplina {
    }
    
    private void imprimeErro(String msg, String msgErro) {  
-      JOptionPane.showMessageDialog(null, msg, "Erro crítico", 0);  
+      System.out.println(msg + " Erro crítico " + 0);  
       System.err.println(msg);  
       System.out.println(msgErro);  
      // System.exit(0);  
