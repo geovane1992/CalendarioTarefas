@@ -1,6 +1,7 @@
 package Classes;
 
 import Conexao.Conexao;
+import DAO.DaoAluno;
 import DAO.DaoDisciplina;
 import java.util.Scanner;
 import java.util.Vector;
@@ -63,6 +64,28 @@ public class Main {
                          break;
 
                          case 2: //Aluno
+                             DaoAluno daoAluno = new DaoAluno();
+                             Scanner scanner = new Scanner(System.in);
+                             int matriculaAluno;
+                             String nomeAluno;
+                             String emailAluno;
+                             
+                             switch(opcaoSubmenu) {
+                                 case 1: //insere
+                                     System.out.print("Informe a matricula do aluno: ");
+                                     matriculaAluno = Integer.parseInt(scanner.nextLine());
+                                     System.out.print("Informe o nome do aluno: ");
+                                     nomeAluno = scanner.nextLine();
+                                     System.out.print("Informe o email do aluno: ");
+                                     emailAluno = scanner.nextLine();
+                                     
+                                     Aluno aluno = new Aluno(matriculaAluno, nomeAluno, emailAluno);
+                                     daoAluno.insere(aluno);
+                                 break;
+                                     
+                                     
+                             }
+                             
                          break;
 
                          case 3: // Disciplina
