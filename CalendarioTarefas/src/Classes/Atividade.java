@@ -16,6 +16,13 @@ public class Atividade {
     public Atividade() {
     }
 
+    public Atividade(int codAtividade, String nome, Calendar data, String observacao) {
+        this.codAtividade = codAtividade;
+        this.nome = nome;
+        this.data = data;
+        this.observacao = observacao;
+    }
+
     public int getCodAtividade() {
         return codAtividade;
     }
