@@ -1,6 +1,8 @@
-package Model;
+package Controller;
 
 import DAO.DAODisciplina;
+import Model.Disciplina;
+import Model.Turma;
 import java.text.ParseException;
 import java.util.Scanner;
 
