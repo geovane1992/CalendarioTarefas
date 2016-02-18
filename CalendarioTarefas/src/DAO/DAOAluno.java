@@ -1,6 +1,6 @@
 package DAO;
 
-import Classes.Aluno;
+import Model.Aluno;
 import Conexao.Conexao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import java.util.Vector;
  *
  * @author Eric
  */
-public class DaoAluno {
+public class DAOAluno {
 
     // Configura essas variáveis de acordo com o seu banco   
     public void apagar(int matricula) {
@@ -40,6 +40,7 @@ public class DaoAluno {
                 aluno.setMatricula(rs.getInt("matricula"));
                 aluno.setNome(rs.getString("nome"));
                 aluno.setEmail(rs.getString("email"));
+                aluno.setCodDisciplina(rs.getInt("codDisciplina"));
                 resultados.add(aluno);
             }
 
@@ -58,6 +59,7 @@ public class DaoAluno {
 
             con.comando.executeUpdate("UPDATE Aluno SET nome = '"
                     + aluno.getNome()
+                    + aluno.getEmail()
                     + "' WHERE  matricula = '" + aluno.getMatricula() + "'");
 
         } catch (SQLException e) {
@@ -74,7 +76,8 @@ public class DaoAluno {
             con.comando.executeUpdate("INSERT INTO Aluno VALUES('" 
                     + aluno.getMatricula() + "','"
                     + aluno.getNome() + "','"
-                    + aluno.getEmail()
+                    + aluno.getEmail() + "','"
+                    + aluno.getCodDisciplina()
                     + "')");
         } catch (SQLException e) {
             imprimeErro("Erro ao inserir Aluno", e.getMessage());

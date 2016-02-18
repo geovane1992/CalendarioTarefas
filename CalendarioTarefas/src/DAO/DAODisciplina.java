@@ -1,7 +1,7 @@
 package DAO;
 
 
-import Classes.Disciplina;
+import Model.Disciplina;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -13,7 +13,7 @@ import java.util.Vector;
  *
  * @author GAOliveira
  */
-public class DaoDisciplina {  
+public class DAODisciplina {  
    // Configura essas variáveis de acordo com o seu banco   
   
    public void apagar(int cod) { 

@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Classes.Curso;
+import Model.Curso;
 import Conexao.Conexao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ import java.util.Vector;
  *
  * @author Henrique
  */
-public class DaoCurso {
+public class DAOCurso {
     
     public void apagar(int codigoCurso) { 
        Conexao con = new Conexao();

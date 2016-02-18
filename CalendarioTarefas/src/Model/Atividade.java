@@ -1,6 +1,7 @@
-package Classes;
+package Model;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -10,17 +11,19 @@ public class Atividade {
 
     private int codAtividade;
     private String nome;
-    private Calendar data;
+    private Date data;
     private String observacao;
+    private int codTurma;
 
     public Atividade() {
     }
 
-    public Atividade(int codAtividade, String nome, Calendar data, String observacao) {
+    public Atividade(int codAtividade, String nome, Date data, String observacao, int codTurma) {
         this.codAtividade = codAtividade;
         this.nome = nome;
         this.data = data;
         this.observacao = observacao;
+        this.codTurma = codTurma;
     }
 
     public int getCodAtividade() {
@@ -39,11 +42,11 @@ public class Atividade {
         this.nome = nome;
     }
 
-    public Calendar getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(Calendar data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
@@ -54,5 +57,15 @@ public class Atividade {
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
+
+    public int getCodTurma() {
+        return codTurma;
+    }
+
+    public void setCodTurma(int codTurma) {
+        this.codTurma = codTurma;
+    }
+    
+    
     
 }

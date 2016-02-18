@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Classes.Turma;
+import Model.Turma;
 import Conexao.Conexao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ import java.util.Vector;
  *
  * @author Henrique
  */
-public class DaoTurma {
+public class DAOTurma {
      // Configura essas variáveis de acordo com o seu banco   
     public void apagar(int codTurma) {
         Conexao con = new Conexao();

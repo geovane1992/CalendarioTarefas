@@ -1,18 +1,19 @@
 package DAO;
 
-import Classes.Aluno;
-import Classes.Atividade;
+import Model.Aluno;
+import Model.Atividade;
 import Conexao.Conexao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Vector;
 
 /**
  *
  * @author Eric
  */
-public class DaoAtividade {
+public class DAOAtividade {
 // Configura essas variáveis de acordo com o seu banco   
     public void apagar(int codAtividade) {
         Conexao con = new Conexao();
@@ -40,8 +41,9 @@ public class DaoAtividade {
                 // pega todos os atributos da atividade 
                 atividade.setCodAtividade(rs.getInt("codAtividade"));
                 atividade.setNome(rs.getString("nome"));
-                atividade.setData((Calendar) rs.getObject("data"));
+                atividade.setData((Date) rs.getObject("data"));
                 atividade.setObservacao(rs.getString("observacao"));
+                atividade.setCodTurma(rs.getInt("codTurma"));
                 resultados.add(atividade);
             }
 
@@ -77,7 +79,8 @@ public class DaoAtividade {
                     + atividade.getCodAtividade()+ "','"
                     + atividade.getNome() + "','"
                     + atividade.getData() + "','"
-                    + atividade.getObservacao()
+                    + atividade.getObservacao() + "','"
+                    + atividade.getCodTurma()
                     + "')");
         } catch (SQLException e) {
             imprimeErro("Erro ao inserir Atividade", e.getMessage());

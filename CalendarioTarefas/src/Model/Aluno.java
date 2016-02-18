@@ -1,4 +1,4 @@
-package Classes;
+package Model;
 
 /**
  *
@@ -9,14 +9,16 @@ public class Aluno {
     private int matricula;
     private String nome;
     private String email;
+    private int codDisciplina;
 
     public Aluno() {
     }
 
-    public Aluno(int matricula, String nome, String email) {
+    public Aluno(int matricula, String nome, String email, int codDisciplina) {
         this.matricula = matricula;
         this.nome = nome;
         this.email = email;
+        this.codDisciplina = codDisciplina;
     }
 
     public int getMatricula() {
@@ -42,5 +44,15 @@ public class Aluno {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public int getCodDisciplina() {
+        return codDisciplina;
+    }
+
+    public void setCodDisciplina(int codDisciplina) {
+        this.codDisciplina = codDisciplina;
+    }
+    
+    
     
 }
