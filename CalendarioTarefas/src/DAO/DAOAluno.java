@@ -13,7 +13,7 @@ import java.util.Vector;
 public class DAOAluno {
 
     // Configura essas variáveis de acordo com o seu banco   
-    public void apagar(int matricula) {
+    public void apagar(int matricula) throws SQLException {
         Conexao con = new Conexao();
         con.getConexao();
         try {
@@ -21,13 +21,13 @@ public class DAOAluno {
                     + matricula + "';");
 
         } catch (SQLException e) {
-            imprimeErro("Erro ao apagar Aluno", e.getMessage());
+            throw e;
         } finally {
             con.fechar();
         }
     }
 
-    public Vector<Aluno> buscarTodos() {
+    public Vector<Aluno> buscarTodos() throws SQLException {
         Conexao con = new Conexao();
         con.getConexao();
         Vector<Aluno> resultados = new Vector<Aluno>();
@@ -46,30 +46,32 @@ public class DAOAluno {
 
             return resultados;
         } catch (SQLException e) {
-            imprimeErro("Erro ao buscar Aluno", e.getMessage());
-            return null;
+            throw e;
+        } finally {
+            con.fechar();
         }
     }
 
-    public void atualizar(Aluno aluno) {
+    public void atualizar(Aluno aluno) throws SQLException {
         Conexao con = new Conexao();
         con.getConexao();
 
         try {
 
             con.comando.executeUpdate("UPDATE Aluno SET nome = '"
-                    + aluno.getNome()
-                    + aluno.getEmail()
+                    + aluno.getNome() + "', email = '"
+                    + aluno.getEmail() + "', codDisciplina = '"
+                    + aluno.getCodDisciplina()
                     + "' WHERE  matricula = '" + aluno.getMatricula() + "'");
 
         } catch (SQLException e) {
-            System.out.println("Erro ao atualizar Aluno!");
+            throw e;
         } finally {
             con.fechar();
         }
     }
 
-    public void insere(Aluno aluno) {
+    public void insere(Aluno aluno) throws SQLException {
         Conexao con = new Conexao();
         con.getConexao();
         try {
@@ -80,16 +82,9 @@ public class DAOAluno {
                     + aluno.getCodDisciplina()
                     + "')");
         } catch (SQLException e) {
-            imprimeErro("Erro ao inserir Aluno", e.getMessage());
+            throw e;
         } finally {
             con.fechar();
         }
     }
-
-    private void imprimeErro(String msg, String msgErro) {
-        System.out.println(msg + " Erro crítico " + 0);
-        System.err.println(msg);
-        System.out.println(msgErro);
-    }
-
 }

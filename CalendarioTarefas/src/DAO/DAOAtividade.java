@@ -1,11 +1,9 @@
 package DAO;
 
-import Model.Aluno;
 import Model.Atividade;
 import Conexao.Conexao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
@@ -15,7 +13,7 @@ import java.util.Vector;
  */
 public class DAOAtividade {
 // Configura essas variáveis de acordo com o seu banco   
-    public void apagar(int codAtividade) {
+    public void apagar(int codAtividade) throws SQLException {
         Conexao con = new Conexao();
         con.getConexao();
         try {
@@ -23,13 +21,13 @@ public class DAOAtividade {
                     + codAtividade + "';");
 
         } catch (SQLException e) {
-            imprimeErro("Erro ao apagar Atividade", e.getMessage());
+            throw e;
         } finally {
             con.fechar();
         }
     }
 
-    public Vector<Atividade> buscarTodos() {
+    public Vector<Atividade> buscarTodos() throws SQLException {
         Conexao con = new Conexao();
         con.getConexao();
         Vector<Atividade> resultados = new Vector<Atividade>();
@@ -49,29 +47,31 @@ public class DAOAtividade {
 
             return resultados;
         } catch (SQLException e) {
-            imprimeErro("Erro ao buscar Atividade", e.getMessage());
-            return null;
+            throw e;
         }
     }
 
-    public void atualizar(Atividade atividade) {
+    public void atualizar(Atividade atividade) throws SQLException {
         Conexao con = new Conexao();
         con.getConexao();
 
         try {
 
             con.comando.executeUpdate("UPDATE Atividade SET nome = '"
-                    + atividade.getNome()
+                    + atividade.getNome() + "', data = '"
+                    + atividade.getData() + "', observacao = '"
+                    + atividade.getObservacao() + "', codTurma = '"
+                    + atividade.getCodTurma()
                     + "' WHERE  codAtividade = '" + atividade.getCodAtividade()+ "'");
 
         } catch (SQLException e) {
-            System.out.println("Erro ao atualizar Atividade!");
+            throw e;
         } finally {
             con.fechar();
         }
     }
 
-    public void insere(Atividade atividade) {
+    public void insere(Atividade atividade) throws SQLException {
         Conexao con = new Conexao();
         con.getConexao();
         try {
@@ -83,15 +83,9 @@ public class DAOAtividade {
                     + atividade.getCodTurma()
                     + "')");
         } catch (SQLException e) {
-            imprimeErro("Erro ao inserir Atividade", e.getMessage());
+            throw e;
         } finally {
             con.fechar();
         }
-    }
-
-    private void imprimeErro(String msg, String msgErro) {
-        System.out.println(msg + " Erro crítico " + 0);
-        System.err.println(msg);
-        System.out.println(msgErro);
     }
 }

@@ -2,6 +2,7 @@ package Controller;
 
 import DAO.DAOAluno;
 import Model.Aluno;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -26,7 +27,11 @@ public class ControleCSV {
         
         if (!listaAlunos.isEmpty()) {
             for (Aluno aluno : listaAlunos) {
-                dao.insere(aluno);
+                try {
+                    dao.insere(aluno);
+                } catch (SQLException ex) {
+                    System.err.println("Erro: Nao foi possivel inserir o aluno.\n"+ex);
+                }
             }
             System.out.println("Alunos inseridos no banco.");
         } else {
