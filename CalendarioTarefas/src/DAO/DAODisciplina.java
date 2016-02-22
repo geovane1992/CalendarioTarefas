@@ -4,7 +4,6 @@ package DAO;
 import Model.Disciplina;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 import Conexao.Conexao;
 import java.util.Vector;
