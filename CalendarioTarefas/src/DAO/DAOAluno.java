@@ -41,6 +41,7 @@ public class DAOAluno {
                 aluno.setNome(rs.getString("nome"));
                 aluno.setEmail(rs.getString("email"));
                 aluno.setCodDisciplina(rs.getInt("codDisciplina"));
+                aluno.setCodTurma(rs.getInt("codTurma"));
                 resultados.add(aluno);
             }
 
@@ -61,7 +62,8 @@ public class DAOAluno {
             con.comando.executeUpdate("UPDATE Aluno SET nome = '"
                     + aluno.getNome() + "', email = '"
                     + aluno.getEmail() + "', codDisciplina = '"
-                    + aluno.getCodDisciplina()
+                    + aluno.getCodDisciplina() + "', codTurma = '"
+                    + aluno.getCodTurma()
                     + "' WHERE  matricula = '" + aluno.getMatricula() + "'");
 
         } catch (SQLException e) {
@@ -79,7 +81,8 @@ public class DAOAluno {
                     + aluno.getMatricula() + "','"
                     + aluno.getNome() + "','"
                     + aluno.getEmail() + "','"
-                    + aluno.getCodDisciplina()
+                    + aluno.getCodDisciplina() + "','"
+                    + aluno.getCodTurma()
                     + "')");
         } catch (SQLException e) {
             throw e;

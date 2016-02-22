@@ -10,15 +10,17 @@ public class Aluno {
     private String nome;
     private String email;
     private int codDisciplina;
+    private int codTurma;
 
     public Aluno() {
     }
 
-    public Aluno(int matricula, String nome, String email, int codDisciplina) {
+    public Aluno(int matricula, String nome, String email, int codDisciplina, int codTurma) {
         this.matricula = matricula;
         this.nome = nome;
         this.email = email;
         this.codDisciplina = codDisciplina;
+        this.codTurma = codTurma;
     }
 
     public int getMatricula() {
@@ -52,7 +54,13 @@ public class Aluno {
     public void setCodDisciplina(int codDisciplina) {
         this.codDisciplina = codDisciplina;
     }
-    
-    
-    
+
+    public int getCodTurma() {
+        return codTurma;
+    }
+
+    public void setCodTurma(int codTurma) {
+        this.codTurma = codTurma;
+    }
+
 }

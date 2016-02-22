@@ -29,6 +29,7 @@ public class LeitorCSV {
                 aluno.setNome(linhaAluno[1]);
                 aluno.setEmail(linhaAluno[2]);
                 aluno.setCodDisciplina(Integer.parseInt(linhaAluno[3]));
+                aluno.setCodTurma(Integer.parseInt(linhaAluno[4]));
 
                 listaAlunos.add(aluno);
             }

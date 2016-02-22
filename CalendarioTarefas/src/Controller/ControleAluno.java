@@ -16,6 +16,7 @@ public class ControleAluno {
         String nomeAluno;
         String emailAluno;
         int codDisciplina;
+        int codTurma;
 
         switch (opcaoSubmenu) {
             case 1: //insere
@@ -27,8 +28,10 @@ public class ControleAluno {
                 emailAluno = scanner.nextLine();
                 System.out.print("Digite o codigo da Disciplina: ");
                 codDisciplina = Integer.parseInt(scanner.nextLine());
+                System.out.print("Digite o codigo da Turma: ");
+                codTurma = Integer.parseInt(scanner.nextLine());
 
-                Aluno novoAluno = new Aluno(matriculaAluno, nomeAluno, emailAluno, codDisciplina);
+                Aluno novoAluno = new Aluno(matriculaAluno, nomeAluno, emailAluno, codDisciplina, codTurma);
                 try {
                     daoAluno.insere(novoAluno);
                 } catch (SQLException ex) {                   
@@ -46,8 +49,10 @@ public class ControleAluno {
                 emailAluno = scanner.nextLine();
                 System.out.print("Digite o codigo da Dsciplina: ");
                 codDisciplina = Integer.parseInt(scanner.nextLine());
+                System.out.print("Digite o codigo da Turma: ");
+                codTurma = Integer.parseInt(scanner.nextLine());
 
-                Aluno alunoAtualizado = new Aluno(matriculaAluno, nomeAluno, emailAluno, codDisciplina);
+                Aluno alunoAtualizado = new Aluno(matriculaAluno, nomeAluno, emailAluno, codDisciplina, codTurma);
 
                 try {
                     daoAluno.atualizar(alunoAtualizado);
@@ -83,6 +88,8 @@ public class ControleAluno {
                         stringAluno.append(alunos.get(i).getEmail());
                         stringAluno.append(" - ");
                         stringAluno.append(alunos.get(i).getCodDisciplina());
+                        stringAluno.append(" - ");
+                        stringAluno.append(alunos.get(i).getCodTurma());
                         System.out.println(stringAluno.toString());
                     }
                 } catch (SQLException ex) {
