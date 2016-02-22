@@ -28,8 +28,8 @@ public Connection getConexao() {
             String mydatabase ="geovane1992";        //nome do banco de dados  
             String url = "jdbc:mysql://" + serverName + "/" + mydatabase;  
             String username = "geovane1992";        //nome de um usuário do BD        
-            String password = "Geo1992*";      // senha de acesso 
-            connection = (Connection) DriverManager.getConnection(url, username, password); 
+            String senha = "Geo1992*";      // senha de acesso 
+            connection = (Connection) DriverManager.getConnection(url, username, senha); 
             comando = (Statement) connection.createStatement(); 
             return connection;  
         }  catch (ClassNotFoundException e) {  //Driver não encontrado  
