@@ -10,16 +10,18 @@ package Model;
  * @author Henrique
  */
 public class Turma {
+
     private int codigoTurma;
     private int codigoCurso;
     private int codigoAtividade;
     private int codigoDisciplina;
     private String periodo;
     private String nomeProfessor;
-    
+
     public Turma() {
+        //Sonar
     }
-    
+
     public Turma(int codigoTurma, int codigoCurso, int codigoAtividade, int codigoDsiciplina, String periodo, String nomeProfessor) {
         this.codigoTurma = codigoTurma;
         this.codigoCurso = codigoCurso;
@@ -28,7 +30,7 @@ public class Turma {
         this.periodo = periodo;
         this.nomeProfessor = nomeProfessor;
     }
-    
+
     public int getCodigoTurma() {
         return codigoTurma;
     }
@@ -52,7 +54,7 @@ public class Turma {
     public String getNomeProfessor() {
         return nomeProfessor;
     }
-    
+
     public void setCodigoTurma(int codigoTurma) {
         this.codigoTurma = codigoTurma;
     }

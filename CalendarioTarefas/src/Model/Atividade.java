@@ -15,6 +15,7 @@ public class Atividade {
     private int codTurma;
 
     public Atividade() {
+        // Sonar
     }
 
     public Atividade(int codAtividade, String nome, Date data, String observacao, int codTurma) {

@@ -13,6 +13,7 @@ public class Aluno {
     private int codTurma;
 
     public Aluno() {
+        //Sonar
     }
 
     public Aluno(int matricula, String nome, String email, int codDisciplina, int codTurma) {

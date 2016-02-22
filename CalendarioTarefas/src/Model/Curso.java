@@ -10,13 +10,14 @@ package Model;
  * @author Henrique
  */
 public class Curso {
+
     private int codCurso;
     private String nome;
 
-    public Curso()
-    {
+    public Curso() {
+        //Sonar
     }
-    
+
     public Curso(int codCurso, String nome) {
         this.codCurso = codCurso;
         this.nome = nome;
@@ -37,5 +38,5 @@ public class Curso {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
 }
