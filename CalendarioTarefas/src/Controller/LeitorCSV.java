@@ -33,7 +33,6 @@ public class LeitorCSV {
 
                 listaAlunos.add(aluno);
             }
-            reader.close();
         } catch (FileNotFoundException e) {
             System.out.println("Erro arquivo não encontrado");
         } catch (IOException e) {
