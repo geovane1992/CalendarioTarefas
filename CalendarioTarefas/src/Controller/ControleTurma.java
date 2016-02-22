@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Turma;
 import DAO.DAOTurma;
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -41,7 +42,12 @@ public class ControleTurma {
                 turma.setCodigoCurso(codigoCursoTurma);
                 turma.setCodigoAtividade(codigoAtividade);
                 turma.setCodigoDisciplina(codigoDisciplina);
-                daoTurma.insere(turma);
+                
+                try {
+                     daoTurma.insere(turma);
+                } catch (SQLException ex) {
+                    System.err.println("Erro: Nao foi possivel inserir a turma.\n" + ex);
+                }
 
                 break;
 
@@ -68,18 +74,30 @@ public class ControleTurma {
                 turma.setCodigoCurso(codigoCursoTurma);
                 turma.setCodigoAtividade(codigoAtividade);
                 turma.setCodigoDisciplina(codigoDisciplina);
-                daoTurma.atualizar(turma);
+                
+                try {
+                    daoTurma.atualizar(turma);
+                } catch (SQLException ex) {
+                    System.err.println("Erro: Nao foi possivel atualizar a turma.\n" + ex);
+                }
                 break;
 
             case 3: //Exclui
                 System.out.println("Digite o código da turma a ser eliminada!");
                 codigoTurma = entradaDadosInt.nextInt();
-                daoTurma.apagar(codigoTurma);
+                
+                try {
+                     daoTurma.apagar(codigoTurma);
+                } catch (SQLException ex) {
+                    System.err.println("Erro: Nao foi possivel excluir a turma.\n" + ex);
+                }
                 break;
 
             case 4: // Lista
-                Vector<Turma> turmaPreenchida = daoTurma.buscarTodos();
-                for (int i = 0; i < turmaPreenchida.size(); i++) {
+                
+                try {
+                    Vector<Turma> turmaPreenchida = daoTurma.buscarTodos();
+                    for (int i = 0; i < turmaPreenchida.size(); i++) {
                     System.out.println(turmaPreenchida.get(i).getCodigoTurma()
                             + " - " + turmaPreenchida.get(i).getPeriodo()
                             + " - " + turmaPreenchida.get(i).getNomeProfessor()
@@ -87,8 +105,10 @@ public class ControleTurma {
                             + " - " + turmaPreenchida.get(i).getCodigoAtividade()
                             + " - " + turmaPreenchida.get(i).getCodigoDisciplina());
                 }
+                } catch (SQLException ex) {
+                    System.err.println("Erro: Nao foi possivel listar a turma.\n" + ex);
+                }
                 break;
-
         }
         
     }

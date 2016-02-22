@@ -17,20 +17,20 @@ import java.util.Vector;
  */
 public class DAOCurso {
     
-    public void apagar(int codigoCurso) { 
+    public void apagar(int codigoCurso) throws SQLException { 
        Conexao con = new Conexao();
        con.getConexao();  
       try {  
          con.comando.executeUpdate("DELETE FROM Curso WHERE codCurso = '" + codigoCurso + "';");
          
-      } catch (SQLException e) {  
-         imprimeErro("Erro ao apagar Curso", e.getMessage());  
-      } finally {  
-         con.fechar();
-      }  
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            con.fechar();
+        } 
    }  
   
-   public Vector<Curso> buscarTodos() {  
+   public Vector<Curso> buscarTodos() throws SQLException {  
       Conexao con = new Conexao();
        con.getConexao();  
       Vector<Curso> resultados = new Vector<Curso>();  
@@ -46,13 +46,14 @@ public class DAOCurso {
          }  
          
          return resultados;  
-      } catch (SQLException e) {  
-         imprimeErro("Erro ao buscar Curso", e.getMessage());  
-         return null;  
-      }  
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            con.fechar();
+        } 
    }  
   
-   public void atualizar(Curso curso) {  
+   public void atualizar(Curso curso) throws SQLException {  
       Conexao con = new Conexao();
        con.getConexao();   
   
@@ -62,31 +63,24 @@ public class DAOCurso {
             + curso.getNome()
             + "' WHERE  codCurso = '" + curso.getCodCurso()+"'"); 
          
-      } catch (SQLException e) {  
-         System.out.println("Erro ao atualizar Curso!");  
-      } finally {  
-         con.fechar();  
-      }  
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            con.fechar();
+        } 
    }  
   
-   public void insere(Curso curso){  
+   public void insere(Curso curso) throws SQLException{  
       Conexao con = new Conexao();
        con.getConexao();   
       try {  
          con.comando.executeUpdate("INSERT INTO Curso VALUES('" + curso.getCodCurso()+ "','" 
                + curso.getNome()
                + "')");  
-      } catch (SQLException e) {  
-         imprimeErro("Erro ao inserir Curso", e.getMessage());  
-      } finally {  
-         con.fechar();  
-      }  
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            con.fechar();
+        }
    }
-   
-   private void imprimeErro(String msg, String msgErro) {  
-      System.out.println(msg + " Erro crítico " + 0);  
-      System.err.println(msg);  
-      System.out.println(msgErro);  
-     // System.exit(0);  
-   } 
 }

@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Curso;
 import DAO.DAOCurso;
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -25,8 +26,12 @@ public class ControleCurso {
 
                 curso.setCodCurso(codigoCurso);
                 curso.setNome(nomeCurso);
-                daoCurso.insere(curso);
-
+        
+                try {
+                    daoCurso.insere(curso);
+                } catch (SQLException ex) {
+                    System.err.println("Erro: Nao foi possivel inserir o curso.\n" + ex);
+                }
                 break;
 
             case 2: //Edita
@@ -37,19 +42,33 @@ public class ControleCurso {
 
                 curso.setCodCurso(codigoCurso);
                 curso.setNome(nomeCurso);
-                daoCurso.atualizar(curso);
+                
+                try {
+                    daoCurso.atualizar(curso);
+                } catch (SQLException ex) {
+                    System.err.println("Erro: Nao foi possivel atualizar o curso.\n" + ex);
+                }
                 break;
 
             case 3: //Exclui
                 System.out.println("Digite o código do Curso a ser eliminado!");
                 codigoCurso = entradaCodigo.nextInt();
-                daoCurso.apagar(codigoCurso);
+
+                try {
+                     daoCurso.apagar(codigoCurso);
+                } catch (SQLException ex) {
+                    System.err.println("Erro: Nao foi possivel excluir o curso.\n" + ex);
+                }
                 break;
 
             case 4: // Lista
-                Vector<Curso> cursoPreenchido = daoCurso.buscarTodos();
+                try {
+                    Vector<Curso> cursoPreenchido = daoCurso.buscarTodos();
                 for (int i = 0; i < cursoPreenchido.size(); i++) {
                     System.out.println(cursoPreenchido.get(i).getCodCurso() + " - " + cursoPreenchido.get(i).getNome());
+                }
+                } catch (SQLException ex) {
+                    System.err.println("Erro: Nao foi possivel listar as atividades.\n" + ex);
                 }
                 break;
 

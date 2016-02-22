@@ -17,7 +17,7 @@ import java.util.Vector;
  */
 public class DAOTurma {
      // Configura essas variáveis de acordo com o seu banco   
-    public void apagar(int codTurma) {
+    public void apagar(int codTurma) throws SQLException {
         Conexao con = new Conexao();
         con.getConexao();
         try {
@@ -25,13 +25,13 @@ public class DAOTurma {
                     + codTurma + "';");
 
         } catch (SQLException e) {
-            imprimeErro("Erro ao apagar Turma", e.getMessage());
+            throw e;
         } finally {
             con.fechar();
         }
     }
 
-    public Vector<Turma> buscarTodos() {
+    public Vector<Turma> buscarTodos() throws SQLException {
         Conexao con = new Conexao();
         con.getConexao();
         Vector<Turma> resultados = new Vector<Turma>();
@@ -52,12 +52,13 @@ public class DAOTurma {
 
             return resultados;
         } catch (SQLException e) {
-            imprimeErro("Erro ao buscar Turma", e.getMessage());
-            return null;
+            throw e;
+        } finally {
+            con.fechar();
         }
     }
 
-    public void atualizar(Turma turma) {
+    public void atualizar(Turma turma) throws SQLException {
         Conexao con = new Conexao();
         con.getConexao();
 
@@ -73,13 +74,13 @@ public class DAOTurma {
                     + "' WHERE  codTurma = '" + turma.getCodigoTurma()+ "'");
 
         } catch (SQLException e) {
-            System.out.println("Erro ao atualizar Turma!");
+            throw e;
         } finally {
             con.fechar();
         }
     }
 
-    public void insere(Turma turma) {
+    public void insere(Turma turma) throws SQLException {
         Conexao con = new Conexao();
         con.getConexao();
         try {
@@ -92,15 +93,9 @@ public class DAOTurma {
                     + turma.getCodigoDisciplina()
                     + "')");
         } catch (SQLException e) {
-            imprimeErro("Erro ao inserir Turma", e.getMessage());
+            throw e;
         } finally {
             con.fechar();
         }
-    }
-
-    private void imprimeErro(String msg, String msgErro) {
-        System.out.println(msg + " Erro crítico " + 0);
-        System.err.println(msg);
-        System.out.println(msgErro);
     }
 }
