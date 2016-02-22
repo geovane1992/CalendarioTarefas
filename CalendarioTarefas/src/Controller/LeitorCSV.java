@@ -33,20 +33,21 @@ public class LeitorCSV {
 
                 listaAlunos.add(aluno);
             }
+            reader.close();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Erro arquivo não encontrado");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Erro na leitura do arquivo");
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("Erro ao fechar conexão");
                 }
             }
         }
-        
+
         return listaAlunos;
     }
 }
