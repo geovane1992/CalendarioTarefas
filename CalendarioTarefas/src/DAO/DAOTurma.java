@@ -47,6 +47,7 @@ public class DAOTurma {
                 turma.setCodigoTurma(rs.getInt("codTurma"));
                 turma.setNomeProfessor(rs.getString("professor"));
                 turma.setPeriodo(rs.getString("periodo"));
+                turma.setEmailProfessor(rs.getString("emailProfessor"));
                 resultados.add(turma);
             }
 
@@ -70,7 +71,8 @@ public class DAOTurma {
                     + turma.getNomeProfessor()+ "', codCurso"
                     + turma.getCodigoCurso()+ "', codAtividade"
                     + turma.getCodigoAtividade()+ "', codDisciplina"
-                    + turma.getCodigoDisciplina()
+                    + turma.getCodigoDisciplina() + "', codigoDisciplina"
+                    + turma.getEmailProfessor()
                     + "' WHERE  codTurma = '" + turma.getCodigoTurma()+ "'");
 
         } catch (SQLException e) {
@@ -90,7 +92,8 @@ public class DAOTurma {
                     + turma.getNomeProfessor()+ "','"
                     + turma.getCodigoCurso()+ "','"
                     + turma.getCodigoAtividade()+ "','"
-                    + turma.getCodigoDisciplina()
+                    + turma.getCodigoDisciplina() + "','"
+                    + turma.getEmailProfessor()
                     + "')");
         } catch (SQLException e) {
             throw e;

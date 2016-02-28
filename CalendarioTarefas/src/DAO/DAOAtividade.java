@@ -50,6 +50,31 @@ public class DAOAtividade {
             throw e;
         }
     }
+    
+    public Vector<Atividade> buscarTodasDaTurma(int codTurma) throws SQLException {
+        Conexao con = new Conexao();
+        con.getConexao();
+        Vector<Atividade> resultados = new Vector<Atividade>();
+        ResultSet rs;
+        try {
+            rs = con.comando.executeQuery("SELECT * FROM Atividade WHERE codTurma = '" 
+                    + codTurma + "';");
+            while (rs.next()) {
+                Atividade atividade = new Atividade();
+                // pega todos os atributos da atividade 
+                atividade.setCodAtividade(rs.getInt("codAtividade"));
+                atividade.setNome(rs.getString("nome"));
+                atividade.setData((Date) rs.getObject("data"));
+                atividade.setObservacao(rs.getString("observacao"));
+                atividade.setCodTurma(rs.getInt("codTurma"));
+                resultados.add(atividade);
+            }
+
+            return resultados;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
 
     public void atualizar(Atividade atividade) throws SQLException {
         Conexao con = new Conexao();

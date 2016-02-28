@@ -12,20 +12,19 @@ public class ControleDisciplina {
         DAODisciplina daoDisciplina = new DAODisciplina();
         Scanner cod = new Scanner(System.in);
         Scanner nome = new Scanner(System.in);
-        int codigoDisc = 0;
         String nomeDisc = null;
 
         switch (opcaoSubmenu) {
             case 1: //insere
                 
-                int valorretornado = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Informe o código da disciplina!"));
+                int codigoDisc = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Informe o código da disciplina!"));
 //                        System.out.println("Infome o código da Discipliana!");
 //                        codigoDisc = cod.nextInt();
                         System.out.println("Infome o nome da Discipliana!");
                         nomeDisc = nome.nextLine();
 
                         
-                disciplina.setCodDisciplina(valorretornado);
+                disciplina.setCodDisciplina(codigoDisc);
                 disciplina.setNome(nomeDisc);
                 daoDisciplina.insere(disciplina);
 

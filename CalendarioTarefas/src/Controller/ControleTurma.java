@@ -20,6 +20,7 @@ public class ControleTurma {
         int codigoDisciplina;
         String periodo;
         String nomeProfessor;
+        String emailProfessor;
 
         switch (opcaoSubmenu) {
             case 1: //insere
@@ -29,6 +30,8 @@ public class ControleTurma {
                 periodo = entradaDadosString.nextLine();
                 System.out.println("Infome o nome do Professor!");
                 nomeProfessor = entradaDadosString.nextLine();
+                System.out.println("Infome o email do Professor!");
+                emailProfessor = entradaDadosString.nextLine();
                 System.out.println("Infome o código do Curso!");
                 codigoCursoTurma = entradaDadosInt.nextInt();
                 System.out.println("Infome o código da Atividade!");
@@ -42,6 +45,7 @@ public class ControleTurma {
                 turma.setCodigoCurso(codigoCursoTurma);
                 turma.setCodigoAtividade(codigoAtividade);
                 turma.setCodigoDisciplina(codigoDisciplina);
+                turma.setEmailProfessor(emailProfessor);
                 
                 try {
                      daoTurma.insere(turma);
@@ -61,6 +65,8 @@ public class ControleTurma {
                 periodo = entradaDadosString.nextLine();
                 System.out.println("Infome o novo nome do Professor!");
                 nomeProfessor = entradaDadosString.nextLine();
+                System.out.println("Infome o novo email do Professor!");
+                emailProfessor = entradaDadosString.nextLine();
                 System.out.println("Infome o novo código do Curso!");
                 codigoCursoTurma = entradaDadosInt.nextInt();
                 System.out.println("Infome o novo código da Atividade!");
@@ -74,6 +80,7 @@ public class ControleTurma {
                 turma.setCodigoCurso(codigoCursoTurma);
                 turma.setCodigoAtividade(codigoAtividade);
                 turma.setCodigoDisciplina(codigoDisciplina);
+                turma.setEmailProfessor(emailProfessor);
                 
                 try {
                     daoTurma.atualizar(turma);
@@ -103,7 +110,8 @@ public class ControleTurma {
                             + " - " + turmaPreenchida.get(i).getNomeProfessor()
                             + " - " + turmaPreenchida.get(i).getCodigoCurso()
                             + " - " + turmaPreenchida.get(i).getCodigoAtividade()
-                            + " - " + turmaPreenchida.get(i).getCodigoDisciplina());
+                            + " - " + turmaPreenchida.get(i).getCodigoDisciplina()
+                            + " - " + turmaPreenchida.get(i).getEmailProfessor());
                 }
                 } catch (SQLException ex) {
                     System.err.println("Erro: Nao foi possivel listar a turma.\n" + ex);

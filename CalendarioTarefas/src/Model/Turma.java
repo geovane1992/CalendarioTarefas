@@ -17,18 +17,20 @@ public class Turma {
     private int codigoDisciplina;
     private String periodo;
     private String nomeProfessor;
+    private String emailProfessor;
 
     public Turma() {
         //Sonar
     }
 
-    public Turma(int codigoTurma, int codigoCurso, int codigoAtividade, int codigoDsiciplina, String periodo, String nomeProfessor) {
+    public Turma(int codigoTurma, int codigoCurso, int codigoAtividade, int codigoDsiciplina, String periodo, String nomeProfessor, String emailProfessor) {
         this.codigoTurma = codigoTurma;
         this.codigoCurso = codigoCurso;
         this.codigoAtividade = codigoAtividade;
         this.codigoDisciplina = codigoDsiciplina;
         this.periodo = periodo;
         this.nomeProfessor = nomeProfessor;
+        this.emailProfessor = emailProfessor;
     }
 
     public int getCodigoTurma() {
@@ -54,6 +56,10 @@ public class Turma {
     public String getNomeProfessor() {
         return nomeProfessor;
     }
+    
+    public String getEmailProfessor() {
+        return emailProfessor;
+    }
 
     public void setCodigoTurma(int codigoTurma) {
         this.codigoTurma = codigoTurma;
@@ -77,5 +83,9 @@ public class Turma {
 
     public void setNomeProfessor(String nomeProfessor) {
         this.nomeProfessor = nomeProfessor;
+    }
+    
+    public void setEmailProfessor(String emailProfessor){
+        this.emailProfessor = emailProfessor;
     }
 }
