@@ -41,7 +41,6 @@ public class DAOTurma {
             while (rs.next()) {
                 Turma turma = new Turma();
                 // pega todos os atributos da turma 
-                turma.setCodigoAtividade(rs.getInt("codAtividade"));
                 turma.setCodigoCurso(rs.getInt("codCurso"));
                 turma.setCodigoDisciplina(rs.getInt("codDisciplina"));
                 turma.setCodigoTurma(rs.getInt("codTurma"));
@@ -70,7 +69,6 @@ public class DAOTurma {
                     + turma.getPeriodo()+ "', professor"
                     + turma.getNomeProfessor()+ "', codCurso"
                     + turma.getCodigoCurso()+ "', codAtividade"
-                    + turma.getCodigoAtividade()+ "', codDisciplina"
                     + turma.getCodigoDisciplina() + "', codigoDisciplina"
                     + turma.getEmailProfessor()
                     + "' WHERE  codTurma = '" + turma.getCodigoTurma()+ "'");
@@ -91,7 +89,6 @@ public class DAOTurma {
                     + turma.getPeriodo()+ "','"
                     + turma.getNomeProfessor()+ "','"
                     + turma.getCodigoCurso()+ "','"
-                    + turma.getCodigoAtividade()+ "','"
                     + turma.getCodigoDisciplina() + "','"
                     + turma.getEmailProfessor()
                     + "')");

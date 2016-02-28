@@ -13,7 +13,6 @@ public class Turma {
 
     private int codigoTurma;
     private int codigoCurso;
-    private int codigoAtividade;
     private int codigoDisciplina;
     private String periodo;
     private String nomeProfessor;
@@ -23,10 +22,9 @@ public class Turma {
         //Sonar
     }
 
-    public Turma(int codigoTurma, int codigoCurso, int codigoAtividade, int codigoDsiciplina, String periodo, String nomeProfessor, String emailProfessor) {
+    public Turma(int codigoTurma, int codigoCurso, int codigoDsiciplina, String periodo, String nomeProfessor, String emailProfessor) {
         this.codigoTurma = codigoTurma;
         this.codigoCurso = codigoCurso;
-        this.codigoAtividade = codigoAtividade;
         this.codigoDisciplina = codigoDsiciplina;
         this.periodo = periodo;
         this.nomeProfessor = nomeProfessor;
@@ -39,10 +37,6 @@ public class Turma {
 
     public int getCodigoCurso() {
         return codigoCurso;
-    }
-
-    public int getCodigoAtividade() {
-        return codigoAtividade;
     }
 
     public int getCodigoDisciplina() {
@@ -67,10 +61,6 @@ public class Turma {
 
     public void setCodigoCurso(int codigoCurso) {
         this.codigoCurso = codigoCurso;
-    }
-
-    public void setCodigoAtividade(int codigoAtividade) {
-        this.codigoAtividade = codigoAtividade;
     }
 
     public void setCodigoDisciplina(int codigoDsiciplina) {

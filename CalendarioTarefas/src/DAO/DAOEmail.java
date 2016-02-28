@@ -27,7 +27,6 @@ public class DAOEmail {
             while (rs.next()) {
                 Turma turma = new Turma();
                 // pega todos os atributos da turma 
-                turma.setCodigoAtividade(rs.getInt("codAtividade"));
                 turma.setCodigoCurso(rs.getInt("codCurso"));
                 turma.setCodigoDisciplina(rs.getInt("codDisciplina"));
                 turma.setCodigoTurma(rs.getInt("codTurma"));

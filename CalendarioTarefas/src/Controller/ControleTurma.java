@@ -34,8 +34,6 @@ public class ControleTurma {
                 emailProfessor = entradaDadosString.nextLine();
                 System.out.println("Infome o código do Curso!");
                 codigoCursoTurma = entradaDadosInt.nextInt();
-                System.out.println("Infome o código da Atividade!");
-                codigoAtividade = entradaDadosInt.nextInt();
                 System.out.println("Infome o código da Disciplina!");
                 codigoDisciplina = entradaDadosInt.nextInt();
 
@@ -43,7 +41,6 @@ public class ControleTurma {
                 turma.setPeriodo(periodo);
                 turma.setNomeProfessor(nomeProfessor);
                 turma.setCodigoCurso(codigoCursoTurma);
-                turma.setCodigoAtividade(codigoAtividade);
                 turma.setCodigoDisciplina(codigoDisciplina);
                 turma.setEmailProfessor(emailProfessor);
                 
@@ -69,8 +66,6 @@ public class ControleTurma {
                 emailProfessor = entradaDadosString.nextLine();
                 System.out.println("Infome o novo código do Curso!");
                 codigoCursoTurma = entradaDadosInt.nextInt();
-                System.out.println("Infome o novo código da Atividade!");
-                codigoAtividade = entradaDadosInt.nextInt();
                 System.out.println("Infome o novo código da Disciplina!");
                 codigoDisciplina = entradaDadosInt.nextInt();
 
@@ -78,7 +73,6 @@ public class ControleTurma {
                 turma.setPeriodo(periodo);
                 turma.setNomeProfessor(nomeProfessor);
                 turma.setCodigoCurso(codigoCursoTurma);
-                turma.setCodigoAtividade(codigoAtividade);
                 turma.setCodigoDisciplina(codigoDisciplina);
                 turma.setEmailProfessor(emailProfessor);
                 
@@ -109,7 +103,6 @@ public class ControleTurma {
                             + " - " + turmaPreenchida.get(i).getPeriodo()
                             + " - " + turmaPreenchida.get(i).getNomeProfessor()
                             + " - " + turmaPreenchida.get(i).getCodigoCurso()
-                            + " - " + turmaPreenchida.get(i).getCodigoAtividade()
                             + " - " + turmaPreenchida.get(i).getCodigoDisciplina()
                             + " - " + turmaPreenchida.get(i).getEmailProfessor());
                 }
