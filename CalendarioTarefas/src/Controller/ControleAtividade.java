@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Atividade;
 import DAO.DAOAtividade;
+import DAO.DAOTurma;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,9 +12,10 @@ import java.util.Vector;
 
 public class ControleAtividade {
 
-    public static void controleAtividade(int opcaoSubmenu) throws ParseException {
+    public static void controleAtividade(int opcaoSubmenu) throws ParseException, SQLException {
 
         DAOAtividade daoAtividade = new DAOAtividade();
+        DAOTurma daoturma = new DAOTurma();
         Scanner sc = new Scanner(System.in);
         int codAtividade;
         String nomeAtividade;
@@ -22,9 +24,13 @@ public class ControleAtividade {
         Date dataFormatada;
         String observacaoAtividade;
         int codTurma = 0;
+        Vector<Integer> listTurma;
+        listTurma = daoturma.buscarTodosCodigos();
 
         switch (opcaoSubmenu) {
             case 1: //insere
+                boolean turmaok = false;
+
                 System.out.print("Digite o codigo da atividade: ");
                 codAtividade = Integer.parseInt(sc.nextLine());
                 System.out.print("Digite o nome da atividade: ");
@@ -37,8 +43,19 @@ public class ControleAtividade {
 
                 System.out.print("Digite alguma observacao sobre a atividade: ");
                 observacaoAtividade = sc.nextLine();
+                
                 System.out.print("Digite o código da turma: ");
                 codTurma = sc.nextInt();
+                while(turmaok == false){
+                    if(listTurma.contains(codTurma)){
+                        turmaok = true;
+                    }
+                    else{
+                    System.out.println("Turma não exise informe novamente!");
+                    codTurma = sc.nextInt();
+                    }
+                      
+                }
 
                 Atividade novaAtividade = new Atividade(codAtividade, nomeAtividade, dta, observacaoAtividade, codTurma);
 
@@ -51,6 +68,8 @@ public class ControleAtividade {
                 break;
 
             case 2: // atualiza
+                boolean turmaok2 = false;
+                
                 System.out.print("Digite o codigo da atividade a ser modificada: ");
                 codAtividade = Integer.parseInt(sc.nextLine());
                 System.out.println("Digite o novo nome da atividade: ");
@@ -65,6 +84,16 @@ public class ControleAtividade {
                 observacaoAtividade = sc.nextLine();
                 System.out.print("Digite o código da turma: ");
                 codTurma = Integer.parseInt(sc.nextLine());
+                while(turmaok2 == false){
+                    if(listTurma.contains(codTurma)){
+                        turmaok2 = true;
+                    }
+                    else{
+                    System.out.println("Turma não exise informe novamente!");
+                    codTurma = sc.nextInt();
+                    }
+                      
+                }
 
                 Atividade atividadeAtualizada = new Atividade(codAtividade, nomeAtividade, dta2, observacaoAtividade, codTurma);
 

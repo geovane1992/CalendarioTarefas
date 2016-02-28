@@ -18,8 +18,6 @@ public class ControleDisciplina {
             case 1: //insere
                 
                 int codigoDisc = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Informe o código da disciplina!"));
-//                        System.out.println("Infome o código da Discipliana!");
-//                        codigoDisc = cod.nextInt();
                         System.out.println("Infome o nome da Discipliana!");
                         nomeDisc = nome.nextLine();
 

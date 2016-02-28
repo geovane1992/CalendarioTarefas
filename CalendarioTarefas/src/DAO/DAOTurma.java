@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import Model.Turma;
@@ -57,6 +52,28 @@ public class DAOTurma {
             con.fechar();
         }
     }
+    
+    public Vector<Integer> buscarTodosCodigos() throws SQLException {
+        Conexao con = new Conexao();
+        con.getConexao();
+        Vector<Integer> resultados = new Vector<Integer>();
+        ResultSet rs;
+        try {
+            rs = con.comando.executeQuery("SELECT * FROM Turma");
+            while (rs.next()) {
+                int turma;
+                // pega todos os atributos da turma 
+                turma = (rs.getInt("codTurma"));
+                resultados.add(turma);
+            }
+
+            return resultados;
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            con.fechar();
+        }
+    }
 
     public void atualizar(Turma turma) throws SQLException {
         Conexao con = new Conexao();
@@ -64,14 +81,14 @@ public class DAOTurma {
 
         try {
 
-            con.comando.executeUpdate("UPDATE Turma SET codTurma = '"
-                    + turma.getCodigoTurma()+ "', periodo = '"
-                    + turma.getPeriodo()+ "', professor"
-                    + turma.getNomeProfessor()+ "', codCurso"
-                    + turma.getCodigoCurso()+ "', codAtividade"
-                    + turma.getCodigoDisciplina() + "', codigoDisciplina"
+            con.comando.executeUpdate("UPDATE Turma SET periodo = '"
+                    + turma.getPeriodo()+ "', professor ='"
+                    + turma.getNomeProfessor()+ "', codCurso ='"
+                    + turma.getCodigoCurso()+  "', codDisciplina ='"
+                    + turma.getCodigoDisciplina() + "', emailProfessor ='"
                     + turma.getEmailProfessor()
                     + "' WHERE  codTurma = '" + turma.getCodigoTurma()+ "'");
+           
 
         } catch (SQLException e) {
             throw e;

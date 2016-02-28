@@ -52,6 +52,28 @@ public class DAOCurso {
             con.fechar();
         } 
    }  
+   
+   public Vector<Integer> buscarTodosCodigo() throws SQLException {  
+      Conexao con = new Conexao();
+       con.getConexao();  
+      Vector<Integer> resultados = new Vector<Integer>();  
+      ResultSet rs;  
+      try {  
+         rs = con.comando.executeQuery("SELECT * FROM Curso");  
+         while (rs.next()) {  
+            int curso;  
+            // pega todos os atributos do Curso 
+            curso = (rs.getInt("codCurso"));     
+            resultados.add(curso);  
+         }  
+         
+         return resultados;  
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            con.fechar();
+        } 
+   }  
   
    public void atualizar(Curso curso) throws SQLException {  
       Conexao con = new Conexao();

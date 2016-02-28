@@ -49,7 +49,29 @@ public class DAODisciplina {
          imprimeErro("Erro ao buscar Disciplina", e.getMessage());  
          return null;  
       }  
-   }  
+   } 
+   
+   public Vector<Integer> buscarTodosCodigo() {  
+      Conexao con = new Conexao();
+       con.getConexao();  
+      Vector<Integer> resultados = new Vector<Integer>();  
+      ResultSet rs;  
+      try {  
+         rs = con.comando.executeQuery("SELECT * FROM Disciplina");  
+         while (rs.next()) {  
+            int temp;  
+            // pega todos os atributos da Disciplina 
+            temp = (rs.getInt("codDisciplina"));   
+            resultados.add(temp);  
+
+         }  
+         
+         return resultados;  
+      } catch (SQLException e) {  
+         imprimeErro("Erro ao buscar Disciplina", e.getMessage());  
+         return null;  
+      }  
+   }
   
    public void atualizar(Disciplina disciplina) {  
       Conexao con = new Conexao();
@@ -73,8 +95,7 @@ public class DAODisciplina {
        con.getConexao();   
       try {  
          con.comando.executeUpdate("INSERT INTO Disciplina VALUES('" + disciplina.getCodDisciplina()+ "','" 
-               + disciplina.getNome() + "','"
-               + disciplina.getMatricula() 
+               + disciplina.getNome()
                + "')");  
       } catch (SQLException e) {  
          imprimeErro("Erro ao inserir Disciplina", e.getMessage());  

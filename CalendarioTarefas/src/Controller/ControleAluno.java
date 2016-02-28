@@ -2,34 +2,72 @@ package Controller;
 
 import Model.Aluno;
 import DAO.DAOAluno;
+import DAO.DAOCurso;
+import DAO.DAODisciplina;
+import DAO.DAOTurma;
 import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.Vector;
 
 public class ControleAluno {
 
-    public static void controleAluno(int opcaoSubmenu) {
+    public static void controleAluno(int opcaoSubmenu) throws SQLException {
 
         DAOAluno daoAluno = new DAOAluno();
+        DAODisciplina daodisciplina = new DAODisciplina();
+        DAOTurma daoturma = new DAOTurma();
         Scanner scanner = new Scanner(System.in);
         int matriculaAluno;
         String nomeAluno;
         String emailAluno;
         int codDisciplina;
         int codTurma;
+        Vector<Integer> listDisciplinas;
+        Vector<Integer> listTurma;
+        
+        listDisciplinas = daodisciplina.buscarTodosCodigo();
+        listTurma = daoturma.buscarTodosCodigos();
+        
 
         switch (opcaoSubmenu) {
             case 1: //insere
+                boolean disciplinaok = false;
+                boolean turmaok = false;
+                
+                
+                
                 System.out.print("Digite a matricula do aluno: ");
                 matriculaAluno = Integer.parseInt(scanner.nextLine());
                 System.out.print("Digite o nome do aluno: ");
                 nomeAluno = scanner.nextLine();
                 System.out.print("Digite o email do aluno: ");
                 emailAluno = scanner.nextLine();
+                
                 System.out.print("Digite o codigo da Disciplina: ");
                 codDisciplina = Integer.parseInt(scanner.nextLine());
+                while(disciplinaok == false){
+                    if(listDisciplinas.contains(codDisciplina)){
+                        disciplinaok = true;
+                    }
+                    else{
+                    System.out.println("Disciplina não exise informe novamente!");
+                    codDisciplina = Integer.parseInt(scanner.nextLine()); 
+                    }
+                      
+                }
+                
                 System.out.print("Digite o codigo da Turma: ");
                 codTurma = Integer.parseInt(scanner.nextLine());
+                while(turmaok == false){
+                    if(listTurma.contains(codTurma)){
+                        turmaok = true;
+                    }
+                    else{
+                    System.out.println("Turma não exise informe novamente!");
+                    codTurma = Integer.parseInt(scanner.nextLine());
+                    }
+                      
+                }
 
                 Aluno novoAluno = new Aluno(matriculaAluno, nomeAluno, emailAluno, codDisciplina, codTurma);
                 try {
@@ -41,6 +79,9 @@ public class ControleAluno {
                 break;
 
             case 2: // atualiza
+                boolean disciplinaok2 = false;
+                boolean turmaok2 = false;
+                
                 System.out.print("Digite a matricula do aluno a ser modificado: ");
                 matriculaAluno = Integer.parseInt(scanner.nextLine());
                 System.out.println("Digite o novo nome do aluno: ");
@@ -49,8 +90,29 @@ public class ControleAluno {
                 emailAluno = scanner.nextLine();
                 System.out.print("Digite o codigo da Dsciplina: ");
                 codDisciplina = Integer.parseInt(scanner.nextLine());
+                while(disciplinaok2 == false){
+                    if(listDisciplinas.contains(codDisciplina)){
+                        disciplinaok2 = true;
+                    }
+                    else{
+                    System.out.println("Disciplina não exise informe novamente!");
+                    codDisciplina = Integer.parseInt(scanner.nextLine()); 
+                    }
+                      
+                }
+                
                 System.out.print("Digite o codigo da Turma: ");
                 codTurma = Integer.parseInt(scanner.nextLine());
+                while(turmaok2 == false){
+                    if(listTurma.contains(codTurma)){
+                        turmaok2 = true;
+                    }
+                    else{
+                    System.out.println("Turma não exise informe novamente!");
+                    codTurma = Integer.parseInt(scanner.nextLine());
+                    }
+                      
+                }
 
                 Aluno alunoAtualizado = new Aluno(matriculaAluno, nomeAluno, emailAluno, codDisciplina, codTurma);
 
