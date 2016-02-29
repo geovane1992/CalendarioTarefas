@@ -38,8 +38,7 @@ public class ControleTurma {
                 boolean disciplinaok = false;
                 boolean cursook = false;
 
-                System.out.println("Infome o código da Turma!");
-                codigoTurma = entradaDadosInt.nextInt();
+                codigoTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Informe o código da Turma!"));
                 System.out.println("Infome o periodo da Turma!");
                 periodo = entradaDadosString.nextLine();
                 System.out.println("Infome o nome do Professor!");
@@ -47,28 +46,24 @@ public class ControleTurma {
                 System.out.println("Infome o email do Professor!");
                 emailProfessor = entradaDadosString.nextLine();
                 
-                System.out.println("Infome o código do Curso!");
-                codigoCursoTurma = entradaDadosInt.nextInt();
+                codigoCursoTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Informe o código do Curso!"));
                 while(cursook == false){
                     if(listCursos.contains(codigoCursoTurma)){
                         cursook = true;
                     }
                     else{
-                    System.out.println("Curso não exise informe novamente!");
-                    codigoCursoTurma = entradaDadosInt.nextInt();   
+                    codigoCursoTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Curso nao exise informe novamente!"));   
                     }
                       
                 }
                 
-                System.out.println("Infome o código da Disciplina!");
-                codigoDisciplina = entradaDadosInt.nextInt();
+                codigoDisciplina = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Infome o codigo da Disciplina!"));
                 while(disciplinaok == false){
                     if(listDisciplinas.contains(codigoDisciplina)){
                         disciplinaok = true;
                     }
                     else{
-                    System.out.println("Disciplina não exise informe novamente!");
-                    codigoDisciplina = entradaDadosInt.nextInt();   
+                    codigoDisciplina = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Disciplina não exise informe novamente!"));  
                     }
                       
                 }
@@ -92,37 +87,32 @@ public class ControleTurma {
                 boolean disciplinaok2 = false;
                 boolean cursook2 = false;
                 
-                System.out.println("Digite o código da turma a ser modificada!");
-                codigoTurma = entradaDadosInt.nextInt();
+                codigoTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da turma a ser modificada!"));  
 
-                System.out.println("Infome o novo período da turma!");
+                System.out.println("Infome o novo periodo da turma!");
                 periodo = entradaDadosString.nextLine();
                 System.out.println("Infome o novo nome do Professor!");
                 nomeProfessor = entradaDadosString.nextLine();
                 System.out.println("Infome o novo email do Professor!");
                 emailProfessor = entradaDadosString.nextLine();
-                System.out.println("Infome o novo código do Curso!");
-                codigoCursoTurma = entradaDadosInt.nextInt();
+                codigoCursoTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Infome o novo Codigo!"));  
                 while(cursook2 == false){
                     if(listCursos.contains(codigoCursoTurma)){
                         cursook2 = true;
                     }
                     else{
-                    System.out.println("Curso não exise informe novamente!");
-                    codigoCursoTurma = entradaDadosInt.nextInt();   
+                    codigoCursoTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Codigo nao exise informe novamente!"));  
                     }
                       
                 }
                 
-                System.out.println("Infome o novo código da Disciplina!");
-                codigoDisciplina = entradaDadosInt.nextInt();
+                codigoDisciplina = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Infome o novo codigo da Disciplina!"));  
                 while(disciplinaok2 == false){
                     if(listDisciplinas.contains(codigoDisciplina)){
                         disciplinaok2 = true;
                     }
                     else{
-                    System.out.println("Disciplina não exise informe novamente!");
-                    codigoDisciplina = entradaDadosInt.nextInt();   
+                    codigoDisciplina =  Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Disciplina nao exise informe o codigo novamente!"));   
                     }
                       
                 }
@@ -142,8 +132,7 @@ public class ControleTurma {
                 break;
 
             case 3: //Exclui
-                System.out.println("Digite o código da turma a ser eliminada!");
-                codigoTurma = entradaDadosInt.nextInt();
+                codigoTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da turma a ser eliminada!"));   
                 
                 try {
                      daoTurma.apagar(codigoTurma);

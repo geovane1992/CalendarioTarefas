@@ -20,9 +20,10 @@ public class ControleCurso {
 
         switch (opcaoSubmenu) {
             case 1: //insere
-                System.out.println("Infome o código do Curso!");
-                codigoCurso = entradaCodigo.nextInt();
+
+                codigoCurso = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Informe o código do Curso!"));
                 System.out.println("Infome o nome do Curso!");
+
                 nomeCurso = entradaNome.nextLine();
 
                 curso.setCodCurso(codigoCurso);
@@ -36,8 +37,9 @@ public class ControleCurso {
                 break;
 
             case 2: //Edita
-                System.out.println("Digite o código do Curso a ser modificado!");
-                codigoCurso = entradaCodigo.nextInt();
+
+                codigoCurso = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Informe o código do Curso a ser modificado!"));
+
                 System.out.println("Informe o novo nome para a disciplina!");
                 nomeCurso = entradaNome.nextLine();
 
@@ -55,20 +57,18 @@ public class ControleCurso {
                 DAOTurma daoturma = new DAOTurma();
                 Vector<Integer> listTurma;
                 boolean turmaok = false;
-                
-                System.out.println("Digite o código do Curso a ser eliminado!");
-                codigoCurso = entradaCodigo.nextInt();
+
+                codigoCurso = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Informe o código do Curso a ser eliminado!"));
+
                 listTurma = daoturma.buscarTurmaComCurso(codigoCurso);
                 while(turmaok == false){
                     if(listTurma.contains(codigoCurso)){
-                        System.out.println("Curso possui vinculo com Turma! Informe outro..");
-                        codigoCurso = entradaCodigo.nextInt();
+                        codigoCurso = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Curso possui vinculo com Turma! Informe outro.."));
                         
                     }
                     else{
                         turmaok = true;
                     }
-                      
                 }
                 
 

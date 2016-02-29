@@ -4,9 +4,21 @@ import java.util.Scanner;
 
 public class ValidadorDeEntradas {
 
-    public static boolean validaSeELetra(String caracter){
+    public static String validaSeELetra(String mensagem){
+        Scanner ler = new Scanner(System.in);
+        String valorAValidar = null;
+        boolean valido = false;
         
-        return caracter.contains("^[a-Z]");
+        while(valido == false){
+            System.out.println(mensagem);
+            valorAValidar = ler.nextLine();
+            
+            if(valorAValidar.equals("") || valorAValidar.equals(" ")){
+                valido = true;
+            }
+        }
+        
+        return valorAValidar;
 
     }
     
