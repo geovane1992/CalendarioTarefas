@@ -2,13 +2,14 @@ package Controller;
 
 import Model.Curso;
 import DAO.DAOCurso;
+import DAO.DAOTurma;
 import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.Vector;
 
 public class ControleCurso {
     
-    public static void controleCurso(int opcaoSubmenu){
+    public static void controleCurso(int opcaoSubmenu) throws SQLException{
     
         DAOCurso daoCurso = new DAOCurso();
         Curso curso = new Curso();
@@ -51,8 +52,25 @@ public class ControleCurso {
                 break;
 
             case 3: //Exclui
+                DAOTurma daoturma = new DAOTurma();
+                Vector<Integer> listTurma;
+                boolean turmaok = false;
+                
                 System.out.println("Digite o código do Curso a ser eliminado!");
                 codigoCurso = entradaCodigo.nextInt();
+                listTurma = daoturma.buscarTurmaComCurso(codigoCurso);
+                while(turmaok == false){
+                    if(listTurma.contains(codigoCurso)){
+                        System.out.println("Curso possui vinculo com Turma! Informe outro..");
+                        codigoCurso = entradaCodigo.nextInt();
+                        
+                    }
+                    else{
+                        turmaok = true;
+                    }
+                      
+                }
+                
 
                 try {
                      daoCurso.apagar(codigoCurso);

@@ -74,6 +74,52 @@ public class DAOTurma {
             con.fechar();
         }
     }
+    
+    public Vector<Integer> buscarTurmaComCurso(int codCurso) throws SQLException {
+        Conexao con = new Conexao();
+        con.getConexao();
+        Vector<Integer> resultados = new Vector<Integer>();
+        ResultSet rs;
+        try {
+            rs = con.comando.executeQuery("SELECT * FROM Turma WHERE codCurso = '" 
+                    + codCurso + "';");
+            while (rs.next()) {
+                int turma;
+                // pega todos os atributos da turma 
+                turma = (rs.getInt("codCurso"));
+                resultados.add(turma);
+            }
+
+            return resultados;
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            con.fechar();
+        }
+    }
+    
+    public Vector<Integer> buscarTurmaComDisciplina(int codDisciplina) throws SQLException {
+        Conexao con = new Conexao();
+        con.getConexao();
+        Vector<Integer> resultados = new Vector<Integer>();
+        ResultSet rs;
+        try {
+            rs = con.comando.executeQuery("SELECT * FROM Turma WHERE codDisciplina = '" 
+                    + codDisciplina + "';");;
+            while (rs.next()) {
+                int turma;
+                // pega todos os atributos da turma 
+                turma = (rs.getInt("codDisciplina"));
+                resultados.add(turma);
+            }
+
+            return resultados;
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            con.fechar();
+        }
+    }
 
     public void atualizar(Turma turma) throws SQLException {
         Conexao con = new Conexao();
