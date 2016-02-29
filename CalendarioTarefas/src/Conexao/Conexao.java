@@ -50,7 +50,8 @@ public void fechar() {
       try {  
          comando.close();  
          connection.close();  
-         System.out.println("Conexão Fechada");  
+         /* Aqui vinha um print informando que a conexao foi fechada.
+            Para isso nao ficar aparecendo toda hora pro usuario, removi o print. */
       } catch (SQLException e) {  
          System.out.println("Erro ao fechar conexão");  
       }  

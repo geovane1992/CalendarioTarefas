@@ -6,7 +6,6 @@ import DAO.DAOTurma;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -20,8 +19,6 @@ public class ControleAtividade {
         int codAtividade;
         String nomeAtividade;
         String dataString;
-        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
-        Date dataFormatada;
         String observacaoAtividade;
         int codTurma = 0;
         Vector<Integer> listTurma;
@@ -31,36 +28,34 @@ public class ControleAtividade {
             case 1: //insere
                 boolean turmaok = false;
 
-                System.out.print("Digite o codigo da atividade: ");
-                codAtividade = Integer.parseInt(sc.nextLine());
+                codAtividade = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da atividade: "));
                 System.out.print("Digite o nome da atividade: ");
                 nomeAtividade = sc.nextLine();
 
-                System.out.println("Digite a data da atividade: ");
+                System.out.println("Digite a data da atividade (dd/MM/aaaa): ");
                 dataString = sc.nextLine();
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                 java.sql.Date dta = new java.sql.Date(format.parse(dataString).getTime());
 
                 System.out.print("Digite alguma observacao sobre a atividade: ");
                 observacaoAtividade = sc.nextLine();
-                
-                System.out.print("Digite o código da turma: ");
-                codTurma = sc.nextInt();
+
+                codTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da turma: "));
                 while(turmaok == false){
                     if(listTurma.contains(codTurma)){
                         turmaok = true;
                     }
                     else{
-                    System.out.println("Turma não exise informe novamente!");
-                    codTurma = sc.nextInt();
-                    }
-                      
+                    System.out.println("Turma não existe, informe novamente!");
+                    codTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da turma: "));
+                    }                      
                 }
 
                 Atividade novaAtividade = new Atividade(codAtividade, nomeAtividade, dta, observacaoAtividade, codTurma);
 
                 try {
                     daoAtividade.insere(novaAtividade);
+                    System.out.println("Atividade inserida com sucesso.");
                 } catch (SQLException ex) {
                     System.err.println("Erro: Nao foi possivel inserir a atividade.\n" + ex);
                 }
@@ -69,9 +64,8 @@ public class ControleAtividade {
 
             case 2: // atualiza
                 boolean turmaok2 = false;
-                
-                System.out.print("Digite o codigo da atividade a ser modificada: ");
-                codAtividade = Integer.parseInt(sc.nextLine());
+
+                codAtividade = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da atividade a ser modificada: "));
                 System.out.println("Digite o novo nome da atividade: ");
                 nomeAtividade = sc.nextLine();
 
@@ -82,23 +76,22 @@ public class ControleAtividade {
 
                 System.out.println("Digite uma nova observacao sobre a atividade: ");
                 observacaoAtividade = sc.nextLine();
-                System.out.print("Digite o código da turma: ");
-                codTurma = Integer.parseInt(sc.nextLine());
+                codTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da turma: "));
                 while(turmaok2 == false){
                     if(listTurma.contains(codTurma)){
                         turmaok2 = true;
                     }
                     else{
-                    System.out.println("Turma não exise informe novamente!");
-                    codTurma = sc.nextInt();
-                    }
-                      
+                    System.out.println("Turma não existe, informe novamente!");
+                    codTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da turma: "));
+                    }                      
                 }
 
                 Atividade atividadeAtualizada = new Atividade(codAtividade, nomeAtividade, dta2, observacaoAtividade, codTurma);
 
                 try {
                     daoAtividade.atualizar(atividadeAtualizada);
+                    System.out.println("Atividade atualizada com sucesso.");
                 } catch (SQLException ex) {
                     System.err.println("Erro: Nao foi possivel atualizar a atividade.\n" + ex);
                 }
@@ -106,11 +99,11 @@ public class ControleAtividade {
                 break;
 
             case 3: // exclui
-                System.out.print("Digite o codigo da atividade a ser excluida: ");
-                codAtividade = Integer.parseInt(sc.nextLine());
+                codAtividade = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da atividade a ser excluida: "));
 
                 try {
                     daoAtividade.apagar(codAtividade);
+                    System.out.println("Atividade excluida com sucesso.");
                 } catch (SQLException ex) {
                     System.err.println("Erro: Nao foi possivel excluir a atividade.\n" + ex);
                 }

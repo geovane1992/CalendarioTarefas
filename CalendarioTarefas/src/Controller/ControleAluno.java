@@ -2,7 +2,6 @@ package Controller;
 
 import Model.Aluno;
 import DAO.DAOAluno;
-import DAO.DAOCurso;
 import DAO.DAODisciplina;
 import DAO.DAOTurma;
 import java.sql.SQLException;
@@ -34,37 +33,32 @@ public class ControleAluno {
                 boolean disciplinaok = false;
                 boolean turmaok = false;
                 
-                
-                
-                System.out.print("Digite a matricula do aluno: ");
-                matriculaAluno = Integer.parseInt(scanner.nextLine());
+                matriculaAluno = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite a matricula do aluno: "));
                 System.out.print("Digite o nome do aluno: ");
                 nomeAluno = scanner.nextLine();
                 System.out.print("Digite o email do aluno: ");
                 emailAluno = scanner.nextLine();
-                
-                System.out.print("Digite o codigo da Disciplina: ");
-                codDisciplina = Integer.parseInt(scanner.nextLine());
+
+                codDisciplina = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da disciplina: "));
                 while(disciplinaok == false){
                     if(listDisciplinas.contains(codDisciplina)){
                         disciplinaok = true;
                     }
                     else{
-                    System.out.println("Disciplina não exise informe novamente!");
-                    codDisciplina = Integer.parseInt(scanner.nextLine()); 
+                    System.out.println("Disciplina não existe, informe novamente!");
+                    codDisciplina = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da disciplina: ")); 
                     }
                       
                 }
                 
-                System.out.print("Digite o codigo da Turma: ");
-                codTurma = Integer.parseInt(scanner.nextLine());
+                codTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da turma: "));
                 while(turmaok == false){
                     if(listTurma.contains(codTurma)){
                         turmaok = true;
                     }
                     else{
-                    System.out.println("Turma não exise informe novamente!");
-                    codTurma = Integer.parseInt(scanner.nextLine());
+                    System.out.println("Turma não existe, informe novamente!");
+                    codTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da turma: "));
                     }
                       
                 }
@@ -72,6 +66,7 @@ public class ControleAluno {
                 Aluno novoAluno = new Aluno(matriculaAluno, nomeAluno, emailAluno, codDisciplina, codTurma);
                 try {
                     daoAluno.insere(novoAluno);
+                    System.out.println("Aluno inserido com sucesso.");
                 } catch (SQLException ex) {                   
                     System.err.println("Erro: Nao foi possivel inserir o aluno.\n"+ex);
                 }
@@ -82,34 +77,31 @@ public class ControleAluno {
                 boolean disciplinaok2 = false;
                 boolean turmaok2 = false;
                 
-                System.out.print("Digite a matricula do aluno a ser modificado: ");
-                matriculaAluno = Integer.parseInt(scanner.nextLine());
+                matriculaAluno = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite a matricula do aluno a ser modificado: "));
                 System.out.println("Digite o novo nome do aluno: ");
                 nomeAluno = scanner.nextLine();
                 System.out.println("Digite o novo email do aluno: ");
                 emailAluno = scanner.nextLine();
-                System.out.print("Digite o codigo da Dsciplina: ");
-                codDisciplina = Integer.parseInt(scanner.nextLine());
+                codDisciplina = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da disciplina: "));
                 while(disciplinaok2 == false){
                     if(listDisciplinas.contains(codDisciplina)){
                         disciplinaok2 = true;
                     }
                     else{
-                    System.out.println("Disciplina não exise informe novamente!");
-                    codDisciplina = Integer.parseInt(scanner.nextLine()); 
+                    System.out.println("Disciplina não existe, informe novamente!");
+                    codDisciplina = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da disciplina: ")); 
                     }
                       
                 }
                 
-                System.out.print("Digite o codigo da Turma: ");
-                codTurma = Integer.parseInt(scanner.nextLine());
+                codTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da turma: "));
                 while(turmaok2 == false){
                     if(listTurma.contains(codTurma)){
                         turmaok2 = true;
                     }
                     else{
-                    System.out.println("Turma não exise informe novamente!");
-                    codTurma = Integer.parseInt(scanner.nextLine());
+                    System.out.println("Turma não existe, informe novamente!");
+                    codTurma = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite o codigo da turma: "));
                     }
                       
                 }
@@ -118,6 +110,7 @@ public class ControleAluno {
 
                 try {
                     daoAluno.atualizar(alunoAtualizado);
+                    System.out.println("Aluno atualizado com sucesso.");
                 } catch (SQLException ex) {
                     System.err.println("Erro: Nao foi possivel atualizar o aluno.\n"+ex);
                 }
@@ -125,11 +118,11 @@ public class ControleAluno {
                 break;
 
             case 3: // exclui
-                System.out.print("Digite a matricula do aluno a ser excluido: ");
-                matriculaAluno = Integer.parseInt(scanner.nextLine());
+                matriculaAluno = Integer.parseInt(ValidadorDeEntradas.validaSeENumero("Digite a matricula do aluno a ser excluido: "));
 
                 try {
                     daoAluno.apagar(matriculaAluno);
+                    System.out.println("Aluno excluido com sucesso.");
                 } catch (SQLException ex) {
                     System.err.println("Erro: Nao foi possivel excluir o aluno.\n"+ex);
                 }
