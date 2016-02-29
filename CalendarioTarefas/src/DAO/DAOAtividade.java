@@ -51,6 +51,27 @@ public class DAOAtividade {
         }
     }
     
+    public Vector<Integer> buscarTodosCodigos(int codTurma) throws SQLException {
+        Conexao con = new Conexao();
+        con.getConexao();
+        Vector<Integer> resultados = new Vector<Integer>();
+        ResultSet rs;
+        try {
+            rs = con.comando.executeQuery("SELECT * FROM Atividade WHERE codTurma = '" 
+                    + codTurma + "';");
+            while (rs.next()) {
+                int atividade;
+                // pega todos os atributos da atividade 
+                atividade = (rs.getInt("codAtividade"));
+                resultados.add(atividade);
+            }
+
+            return resultados;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+    
     public Vector<Atividade> buscarTodasDaTurma(int codTurma) throws SQLException {
         Conexao con = new Conexao();
         con.getConexao();

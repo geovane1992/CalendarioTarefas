@@ -2,6 +2,7 @@ package Controller;
 
 import DAO.DAOAtividade;
 import DAO.DAOEmail;
+import DAO.DAOTurma;
 import Model.Aluno;
 import Model.Atividade;
 import Model.Disciplina;
@@ -19,21 +20,36 @@ public class ControleEmail {
     
     public static void controleEmail(int opcaoSubmenu) throws SQLException, Exception{
         DAOAtividade daoatividade = new DAOAtividade();
+        DAOTurma daoturma = new DAOTurma();
         Vector<Atividade> listAtividades = null;
         Vector<Turma> listTurma;
         Vector<Aluno> listAlunos;
         Vector<Atividade> listAtivid;
         Vector<Disciplina> listDisciplna;
+        Vector<Integer> listCodTurma;
+        Vector<Integer> listCodAtividade;
         String assunto = "";
         String conteudo = "";
         StringBuilder emails = new StringBuilder();
+        boolean turmaok = false;
+        boolean atividadeok = false;
         
+        listCodTurma = daoturma.buscarTodosCodigos();
         String cdTurma = ValidadorDeEntradas.validaSeENumero("Informe o código da turma!:");
+        while(turmaok == false){
+                    if(listCodTurma.contains(Integer.parseInt(cdTurma))){
+                        turmaok = true;
+                    }
+                    else{
+                    System.out.println("Turma não exise!");
+                    cdTurma = ValidadorDeEntradas.validaSeENumero("Informe o código da turma!:");
+                    }
+                      
+        }
         
         switch(opcaoSubmenu){
             case 1:
-              String codTurma =  ValidadorDeEntradas.validaSeENumero("Informe o código da turma!");
-               listAtividades = daoatividade.buscarTodasDaTurma(Integer.parseInt(codTurma));
+               listAtividades = daoatividade.buscarTodasDaTurma(Integer.parseInt(cdTurma));
                     
                for(Atividade atividades : listAtividades){
                    StringBuilder stringAtividade = new StringBuilder();
@@ -52,8 +68,18 @@ public class ControleEmail {
             break;
                 
             case 2:
-               
+                listCodAtividade = daoatividade.buscarTodosCodigos(Integer.parseInt(cdTurma));
                 String cdAtividade = ValidadorDeEntradas.validaSeENumero("Informe o código da Atividade!:");
+                while(atividadeok == false){
+                    if(listCodAtividade.contains(Integer.parseInt(cdAtividade))){
+                        atividadeok = true;
+                    }
+                    else{
+                    System.out.println("Atividade não exise!");
+                    cdAtividade = ValidadorDeEntradas.validaSeENumero("Informe o código da Atividade!:");
+                    }
+                      
+                }
                 
                 listTurma = DAOEmail.buscarTurma(Integer.parseInt(cdTurma));
                 listAlunos = DAOEmail.buscaAlunos(Integer.parseInt(cdTurma));
